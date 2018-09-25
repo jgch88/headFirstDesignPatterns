@@ -3,18 +3,18 @@ const gumballMachineStatePattern = require('./gumballMachineStatePattern.js');
 test('Gumball Machine Test Drive', () => {
   const gumballMachine = new gumballMachineStatePattern(5);
 
-  gumballMachine.status();
+  gumballMachine.getStatus();
 
   gumballMachine.insertQuarter();
   gumballMachine.turnCrank();
 
-  gumballMachine.status();
+  gumballMachine.getStatus();
 
   gumballMachine.insertQuarter();
   gumballMachine.ejectQuarter();
   gumballMachine.turnCrank();
 
-  gumballMachine.status();
+  gumballMachine.getStatus();
 
   gumballMachine.insertQuarter();
   gumballMachine.turnCrank();
@@ -22,7 +22,7 @@ test('Gumball Machine Test Drive', () => {
   gumballMachine.turnCrank();
   gumballMachine.ejectQuarter();
 
-  gumballMachine.status();
+  gumballMachine.getStatus();
 
   gumballMachine.insertQuarter();
   gumballMachine.insertQuarter();
@@ -32,5 +32,5 @@ test('Gumball Machine Test Drive', () => {
   gumballMachine.insertQuarter();
   gumballMachine.turnCrank();
 
-  gumballMachine.status();
+  gumballMachine.getStatus();
 });
