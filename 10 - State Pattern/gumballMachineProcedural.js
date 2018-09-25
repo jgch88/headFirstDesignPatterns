@@ -17,6 +17,7 @@ class GumballMachine {
     if (this.state === this.HAS_QUARTER) {
       console.log(`You can't insert another quarter.`);
     } else if (this.state === this.NO_QUARTER) {
+      this.state = this.HAS_QUARTER;
       console.log(`You inserted a quarter.`)
     } else if (this.state === this.SOLD_OUT) {
       console.log(`You can't insert a quarter, the machine is sold out.`);
@@ -45,7 +46,7 @@ class GumballMachine {
       console.log(`You turned but there's no quarter.`);
     } else if (this.state === this.SOLD_OUT) {
       console.log(`You turned, but there are no gumballs.`);
-    } else if (this.state === HAS_QUARTER) {
+    } else if (this.state === this.HAS_QUARTER) {
       console.log(`You turned...`);
       this.state = this.SOLD;
       this.dispense();
@@ -70,4 +71,12 @@ class GumballMachine {
       console.log(`No gumball dispensed.`);
     }
   }
+
+  status() {
+    console.log(`Mighty Gumball, Inc.`);
+    console.log(`Javascript enabled Standing Gumball Model #2018`);
+    console.log(`Inventory: ${this.count} gumballs`);
+  }
 }
+
+module.exports = GumballMachine;
