@@ -7,6 +7,39 @@ and extending the Context class (Open-Closed principle).
 
 (Will we end up with multiple "old", unused versions of the original parent Context/State classes which
 we will eventually merge back instead of extending? It might be easier than having to open multiple files.)
+--EDIT--
+After working through the refill() exercise, it's probably prudent to know WHEN to modify and WHEN to extend,
+instead of ALWAYS extending modules. I think it's cleaner to not have V1,V2,V3 files lying everywhere (and
+isn't that what the version control system is for?) and having multiple levels of inheritance, 
+we probably should have just ONE file for each State. Perhaps this tension is also something to recognise
+in clean code and refactoring. By definition feature requests are additional "responsibilities", so how do we
+balance the Single Responsibility Principle and the Open Closed Principle? Do we extend? Do we modify? Are we
+supposed to refactor out more classes? In the State Pattern, it seems like the "single reason" for the Context class
+to change is when TRANSITIONS (the _arrows_ that point from state to state) are changed/added. If you think about it
+refill() is a new API feature to be added to this Context, and we're trying to abstract away what refill() does from
+the requestor, like 'magic'.
+
+Meanwhile, the "single reason" for the State classes to change is when behaviours are changed within each State (basic), AND MORE IMPORTANTLY
+when the State responsible for the TRANSITION to neighbouring states must be changed (compare HasQuarterState and HasQuarterStateV2).
+
+I do feel that one weakness of the State Pattern is that it is all too tempting to put an implementation detail of a State
+into the Context itself, resulting in multiple levels of abstraction being within the same file. Be conscious about 'private'
+and 'protected' and 'public' methods even if they don't exist in JS.
+
+Also, the "single responsibility" each State subclass isn't exactly "single" when they both have to maintain 1. state behaviour as well as 
+2. state transitions to neighbours.
+
+--
+
+As the number of states increases, the permutation of invisible invalid state transitions increases (space complexity) to the
+n^2.
+
+```
+Number of transition states: n(n-1) // counting each edge of a Complete Graph twice for bidirectional transition
+```
+
+It's not so much the actual space requirement, it's the unscalability of filling in "every" transition in "every" state.
+We definitely need to use 'default' error handling for these invalid state transitions within the ROOT state.
 
 State classes are responsible for the transitions to only their immediate neighbouring states (a single
 reason to change), whereas if you use procedural if/else branches, 
