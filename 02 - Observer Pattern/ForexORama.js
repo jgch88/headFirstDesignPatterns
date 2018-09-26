@@ -2,7 +2,8 @@ const axios = require('axios');
 
 class ForexORama {
 
-  constructor() {
+  constructor(forexData) {
+    this.forexData = forexData;
     this.USDtoJPY = 0;
 
     setInterval(
@@ -17,6 +18,7 @@ class ForexORama {
       // free api key only gives 5 requests per minute max
       const response = await axios.get('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=N3AT6ETKF5AFZYB9');
       this.USDtoJPY = response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+      this.forexData.exchangeRateChanged();
       return response;
     } catch (error) {
       console.log(error);
