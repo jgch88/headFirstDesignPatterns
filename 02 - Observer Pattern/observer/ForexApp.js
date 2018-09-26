@@ -9,3 +9,10 @@ const ConsoleLoggerDisplay = new consoleLoggerDisplayObserver(ForexStation);
 const RateChangeDisplay = new rateChangeDisplayObserver(ForexStation);
 
 
+setTimeout(() => {
+  ForexStation.removeObserver(RateChangeDisplay);
+}, 45000);
+
+setTimeout(() => {
+  ForexStation.registerObserver(RateChangeDisplay);
+}, 90000);
