@@ -1,4 +1,6 @@
 // <<interface>> State equivalent in JS
+// OR an <<abstract class>>
+// These two things are Java ideas rather than JS?
 
 class State {
   constructor(gumballMachine) {
