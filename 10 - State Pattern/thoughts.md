@@ -19,15 +19,18 @@ to change is when TRANSITIONS (the _arrows_ that point from state to state) are 
 refill() is a new API feature to be added to this Context, and we're trying to abstract away what refill() does from
 the requestor, like 'magic'.
 
-Meanwhile, the "single reason" for the State classes to change is when behaviours are changed within each State (basic), AND MORE IMPORTANTLY
-when the State responsible for the TRANSITION to neighbouring states must be changed (compare HasQuarterState and HasQuarterStateV2).
+Meanwhile, the "single reason" for the State classes to change is when basic behaviours are changed within each State (adding refill() is one, 
+perhaps changing ejectQuarter() is another). 
+ADDITIONALLY  the State responsible for the TRANSITION to neighbouring states must be changed (compare turnCrank() in HasQuarterState and HasQuarterStateV2),
+when the transition behaviour itself is changed.
+
+(So, the "single responsibility" each State subclass isn't exactly "single" when they both have to maintain 1. basic state behaviour as well as 
+2. state transitions to neighbours.)
 
 I do feel that one weakness of the State Pattern is that it is all too tempting to put an implementation detail of a State
 into the Context itself, resulting in multiple levels of abstraction being within the same file. Be conscious about 'private'
 and 'protected' and 'public' methods even if they don't exist in JS.
 
-Also, the "single responsibility" each State subclass isn't exactly "single" when they both have to maintain 1. state behaviour as well as 
-2. state transitions to neighbours.
 
 --
 
