@@ -4,8 +4,8 @@ class consoleLoggerDisplay {
     this.USDtoJPY = 0;
   }
 
-  update() {
-    this.USDtoJPY = this.forexData.getUSDtoJPYExchangeRate();
+  update(currentUSDtoJPYExchangeRate) {
+    this.USDtoJPY = currentUSDtoJPYExchangeRate;
     console.log(`ConsoleLoggerUpdate: ${this.USDtoJPY}`);
   }
 }

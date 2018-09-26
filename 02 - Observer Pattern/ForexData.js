@@ -1,5 +1,6 @@
 const ForexORama = require('./ForexORama.js');
 const consoleLoggerDisplay = require('./consoleLoggerDisplay.js');
+const rateChangeDisplay = require('./rateChangeDisplay.js');
 
 // is there a dependency inversion here? why does the
 // ForexData object depend on the consoleLoggerDisplay
@@ -10,6 +11,7 @@ class ForexData {
   constructor() {
     this.ForexORama = new ForexORama(this);
     this.consoleLoggerDisplay = new consoleLoggerDisplay(this);
+    this.rateChangeDisplay = new rateChangeDisplay(this);
   }
 
   getUSDtoJPYExchangeRate() {
@@ -19,6 +21,7 @@ class ForexData {
   exchangeRateChanged() {
     const currentUSDtoJPYExchangeRate = this.getUSDtoJPYExchangeRate();
     this.consoleLoggerDisplay.update(currentUSDtoJPYExchangeRate);
+    this.rateChangeDisplay.update(currentUSDtoJPYExchangeRate);
   }
 
 }
