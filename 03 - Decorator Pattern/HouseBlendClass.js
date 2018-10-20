@@ -4,7 +4,10 @@ class HouseBlendClass extends BeverageClass {
   constructor() {
     super();
     this.description = "A lovely house blend.";
-    this.cost = 5;
+  }
+
+  cost() {
+    return 5;
   }
 }
 
